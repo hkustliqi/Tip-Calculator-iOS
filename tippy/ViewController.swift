@@ -27,11 +27,13 @@ class ViewController: UIViewController {
         let defaults = NSUserDefaults.standardUserDefaults()
         let default_percent = defaults.integerForKey("default_tip")
         tipControl.selectedSegmentIndex = default_percent
+
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        //print("view did appear")
+        // show keyboard
+        billField.becomeFirstResponder()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -50,7 +52,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func OnTap(sender: AnyObject) {
-        view.endEditing(true)
+        //view.endEditing(true)
     }
     
     @IBAction func CalculateTip(sender: AnyObject) {
