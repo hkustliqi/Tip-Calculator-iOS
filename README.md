@@ -18,7 +18,7 @@ The following **required** functionality is complete:
 
 Here's a walkthrough of implemented user stories:
 
-(http://imgur.com/a/3VJN5)
+(http://i.imgur.com/AmoG7rH.gifv)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
