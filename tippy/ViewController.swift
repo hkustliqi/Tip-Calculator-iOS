@@ -60,8 +60,14 @@ class ViewController: UIViewController {
         let bill = Double(billField.text!) ?? 0
         let tip = bill * tipPercent[tipControl.selectedSegmentIndex]
         let total = bill + tip
-        tipLabel.text = String(format: "$%.2f", tip)
-        totalLabel.text = String(format: "$%.2f", total)
+        
+        
+        //  locale specific currency and currency thousands separator
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .CurrencyStyle
+        formatter.maximumFractionDigits = 2 ;
+        tipLabel.text = formatter.stringFromNumber(tip)!
+        totalLabel.text = formatter.stringFromNumber(total)!
     }
 
 }
