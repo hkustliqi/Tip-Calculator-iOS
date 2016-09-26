@@ -27,7 +27,8 @@ class ViewController: UIViewController {
         let defaults = NSUserDefaults.standardUserDefaults()
         let default_percent = defaults.integerForKey("default_tip")
         tipControl.selectedSegmentIndex = default_percent
-
+        doCalu()
+        
         // on start up only show bill
         if (billField.text == "") {
             TipView.alpha = 0
@@ -58,6 +59,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func CalculateTip(sender: AnyObject) {
+        doCalu()
+    }
+    
+    func doCalu() {
         let tipPercent = [0.18, 0.2, 0.25]
         let bill = Double(billField.text!) ?? 0
         let tip = bill * tipPercent[tipControl.selectedSegmentIndex]
