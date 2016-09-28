@@ -21,11 +21,11 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // read default tip percent
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let default_percent = defaults.integerForKey("default_tip")
+        let defaults = UserDefaults.standard
+        let default_percent = defaults.integer(forKey: "default_tip")
         tipControl.selectedSegmentIndex = default_percent
         doCalu()
         
@@ -35,17 +35,17 @@ class ViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // show keyboard
         billField.becomeFirstResponder()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
     }
 
@@ -54,11 +54,11 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func OnTap(sender: AnyObject) {
+    @IBAction func OnTap(_ sender: AnyObject) {
         //view.endEditing(true)
     }
     
-    @IBAction func CalculateTip(sender: AnyObject) {
+    @IBAction func CalculateTip(_ sender: AnyObject) {
         doCalu()
     }
     
@@ -70,14 +70,14 @@ class ViewController: UIViewController {
         
         
         //  locale specific currency and currency thousands separator
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = .CurrencyStyle
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
         formatter.maximumFractionDigits = 2 ;
-        tipLabel.text = formatter.stringFromNumber(tip)!
-        totalLabel.text = formatter.stringFromNumber(total)!
+        tipLabel.text = formatter.string(for: tip)
+        totalLabel.text = formatter.string(for: total)
         
         // animation for TipView
-        UIView.animateWithDuration(0.6, animations: {
+        UIView.animate(withDuration: 0.6, animations: {
             self.TipView.alpha = 1
         })
     }

@@ -24,12 +24,12 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func setDefault(sender: AnyObject) {
+    @IBAction func setDefault(_ sender: AnyObject) {
         // save default to NSUserDefaults
         let tipPercentage = settings.selectedSegmentIndex
         
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setInteger(tipPercentage, forKey: "default_tip")
+        let defaults = UserDefaults.standard
+        defaults.set(tipPercentage, forKey: "default_tip")
         defaults.synchronize()
     }
 
