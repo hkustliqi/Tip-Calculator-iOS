@@ -15,15 +15,17 @@ The following **required** functionality is complete:
 
 The following **optional** features are implemented:
 * [x] UI animations. Tip section will only show up once typing.
+* [x]  Remembering the bill amount across app restarts (if <10mins)
 * [x] Using locale-specific currency and currency thousands separators.
 * [x] Making sure the keyboard is always visible and the bill amount is always the first responder. 
+* [x] Minor UI features and split feature
 
 
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
 
-![Video Walkthrough](http://i.imgur.com/Lxi08He.gif)
+![Video Walkthrough](http://i.imgur.com/eL0Q53o.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
