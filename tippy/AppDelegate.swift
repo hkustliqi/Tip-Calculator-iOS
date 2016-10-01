@@ -20,8 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.r
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        let tipDefault = UserDefaults.standard
+        tipDefault.set(NSDate(), forKey: "last_date")
+        tipDefault.synchronize()
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -35,6 +38,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        let tipDefault = UserDefaults.standard
+        let last = tipDefault.object(forKey: "last_date") as! NSDate?
+        if (last != nil) {
+            let interval = NSDate().timeIntervalSince(last as! Date)
+            let ti = NSInteger(interval)
+            let minutes = (ti / 60) % 60
+            if (minutes > 10) {
+                tipDefault.set(0, forKey: "last_bill")
+            }
+        }
+        
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var tipControl: UISegmentedControl!
     @IBOutlet weak var TipView: UIView!
+    @IBOutlet weak var TwoWayLabel: UILabel!
+    @IBOutlet weak var ThreeWayLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,11 @@ class ViewController: UIViewController {
         tipControl.selectedSegmentIndex = default_percent
         doCalu()
         
+        let last_bill = defaults.integer(forKey: "last_bill")
+        if (last_bill != 0) {
+            let formatter = NumberFormatter()
+            billField.text = formatter.string(for: last_bill)
+        }
         // on start up only show bill
         if (billField.text == "") {
             TipView.alpha = 0
@@ -67,7 +74,12 @@ class ViewController: UIViewController {
         let bill = Double(billField.text!) ?? 0
         let tip = bill * tipPercent[tipControl.selectedSegmentIndex]
         let total = bill + tip
+        let twoWaySplit = total/2
+        let threeWaySplit = total/3
         
+        let defaults = UserDefaults.standard
+        defaults.set(bill, forKey: "last_bill")
+        defaults.synchronize()
         
         //  locale specific currency and currency thousands separator
         let formatter = NumberFormatter()
@@ -75,12 +87,16 @@ class ViewController: UIViewController {
         formatter.maximumFractionDigits = 2 ;
         tipLabel.text = formatter.string(for: tip)
         totalLabel.text = formatter.string(for: total)
+        TwoWayLabel.text = formatter.string(for: twoWaySplit)
+        ThreeWayLabel.text = formatter.string(for: threeWaySplit)
         
         // animation for TipView
         UIView.animate(withDuration: 0.6, animations: {
             self.TipView.alpha = 1
         })
     }
+    
+    
 
 }
 
